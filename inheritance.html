@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <title>Inheritance</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="stylesheet" href="assets/css/main.css" />
+   </head>
+   <body class="subpage">
+      <!-- Header -->
+      <header id="header">
+         <a href="#menu">Menu</a>
+      </header>
+      <!-- Nav -->
+    <nav id="menu">
+         <ul class="links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="oops.html">Object Oriented JavaScript</a></li>
+            <li><a href="functional-context.html">Functional Context</a></li>
+            <li><a href="inheritance.html">Inheritance</a></li>
+         </ul>
+      </nav>
+      <!-- Main -->
+      <div id="main">
+         <!-- Section -->
+         <section class="wrapper">
+            <div class="inner">
+               <header class="align-center">
+                  <h1>Inheritance</h1>
+               </header>
+               <div class="flex flex-2">
+                  <div class="col col2">
+                     <h4>JavaScript uses prototype based inheritance. Every object has a <code>prototype</code>, and when a method of the object is called then JavaScript tries to find the right function to execute from the prototype object.</h4>
+                     <h3>The prototype attribute</h3>
+                     <h4>Without using the prototype object, we can define the object Person like this:</h4>
+                     <pre style="background:#0c1021;color:#f8f8f8"><span style="color:#fbde2d">function</span> <span style="color:#ff6400">Person</span>(name, age)
+{
+    this.<span style="color:#8da6ce">name</span> <span style="color:#fbde2d">=</span> name;
+    this.age <span style="color:#fbde2d">=</span> age;
+
+    <span style="color:#fbde2d">function</span> <span style="color:#ff6400">describe</span>()
+    {
+        <span style="color:#fbde2d">return</span> this.<span style="color:#8da6ce">name</span> <span style="color:#fbde2d">+</span> <span style="color:#61ce3c">", "</span> <span style="color:#fbde2d">+</span> this.age <span style="color:#fbde2d">+</span> <span style="color:#61ce3c">" years old."</span>;
+    }
+}
+</pre>
+                  </div>
+               </div>
+               <div class="flex flex-2">
+                  <div class="col col2">
+                     <h4>When creating instances of the <code>Person</code> object, we create a new copy of all members and methods of the functions. This means that every instance of an object will have its own <code>name</code> and <code>age</code> properties, as well as its own <code>describe</code> function.
+                     </h4>
+                     <h4>However, if we use the <code>Person.prototype</code> object and assign a function to it, it will also work.</h4>
+                     <pre style="background:#0c1021;color:#f8f8f8"><span style="color:#fbde2d">function</span> <span style="color:#ff6400">Person</span>(name, age)
+{
+    this.<span style="color:#8da6ce">name</span> <span style="color:#fbde2d">=</span> name;
+    this.age <span style="color:#fbde2d">=</span> age;
+}
+
+<span style="color:#8da6ce">Person</span>.<span style="color:#8da6ce">prototype</span>.<span style="color:#ff6400">describe</span> <span style="color:#fbde2d">=</span> <span style="color:#fbde2d">function</span>()
+{
+    <span style="color:#fbde2d">return</span> this.<span style="color:#8da6ce">name</span> <span style="color:#fbde2d">+</span> <span style="color:#61ce3c">", "</span> <span style="color:#fbde2d">+</span> this.age <span style="color:#fbde2d">+</span> <span style="color:#61ce3c">" years old."</span>;
+}
+</pre>
+                  </div>
+               </div>
+               <div class="flex flex-2">
+                  <div class="col col2">
+                     <h4>When creating instances of the <code>Person</code> object, they will not contain a copy of the <code>describe</code> function. Instead, when calling an object method, JavaScript will attempt to resolve the <code>describe</code> function first from the object itself, and then using its <code>prototype</code> attribute.</h4>
+                  </div>
+               </div>
+               <div class="flex flex-2">
+                  <div class="col col2">
+                     <h3>Inheritance</h3>
+                     <h4>Let's say we want to create a <code>Person</code> object, and a <code>Student</code> object derived from <code>Person</code>:</h4>
+                     <pre style="background:#0c1021;color:#f8f8f8"><span style="color:#fbde2d">var</span> <span style="color:#ff6400">Person</span> <span style="color:#fbde2d">=</span> <span style="color:#fbde2d">function</span>() {};
+
+<span style="color:#8da6ce">Person</span>.<span style="color:#8da6ce">prototype</span>.<span style="color:#ff6400">initialize</span> <span style="color:#fbde2d">=</span> <span style="color:#fbde2d">function</span>(name, age)
+{
+    this.<span style="color:#8da6ce">name</span> <span style="color:#fbde2d">=</span> name;
+    this.age <span style="color:#fbde2d">=</span> age;
+}
+
+<span style="color:#8da6ce">Person</span>.<span style="color:#8da6ce">prototype</span>.<span style="color:#ff6400">describe</span> <span style="color:#fbde2d">=</span> <span style="color:#fbde2d">function</span>()
+{
+    <span style="color:#fbde2d">return</span> this.<span style="color:#8da6ce">name</span> <span style="color:#fbde2d">+</span> <span style="color:#61ce3c">", "</span> <span style="color:#fbde2d">+</span> this.age <span style="color:#fbde2d">+</span> <span style="color:#61ce3c">" years old."</span>;
+}
+
+<span style="color:#fbde2d">var</span> <span style="color:#ff6400">Student</span> <span style="color:#fbde2d">=</span> <span style="color:#fbde2d">function</span>() {};
+<span style="color:#8da6ce">Student</span>.<span style="color:#8da6ce">prototype</span> <span style="color:#fbde2d">=</span> <span style="color:#fbde2d">new</span> <span style="color:#ff6400">Person</span>();
+
+<span style="color:#8da6ce">Student</span>.<span style="color:#8da6ce">prototype</span>.<span style="color:#ff6400">learn</span> <span style="color:#fbde2d">=</span> <span style="color:#fbde2d">function</span>(subject)
+{
+    <span style="color:#ff6400">console</span><span style="color:#8da6ce">.log</span>(this.<span style="color:#8da6ce">name</span> <span style="color:#fbde2d">+</span> <span style="color:#61ce3c">" just learned "</span> <span style="color:#fbde2d">+</span> subject);
+}
+
+<span style="color:#fbde2d">var</span> me <span style="color:#fbde2d">=</span> <span style="color:#fbde2d">new</span> <span style="color:#ff6400">Student</span>();
+
+me.initialize(<span style="color:#61ce3c">"John"</span>, <span style="color:#d8fa3c">25</span>);
+me.learn(<span style="color:#61ce3c">"Inheritance"</span>);
+</pre>
+                  </div>
+               </div>
+               <div class="flex flex-2">
+                  <div class="col col2">
+                  <h4>As we can see in this example, the <code>initialize</code> method belongs to <code>Person</code> and the <code>learn</code> method belongs to <code>Student</code>, both of which are now part of the <code>me</code> object.</h4>
+                  <h4>Keep in mind that there are many ways of doing inheritance in JavaScript, and this is just one of them.</h4>
+                  <h3>Exercise</h3>
+                  <h4>Create an object called <code>Teacher</code> derived from the <code>Person</code> class, and implement a method called <code>teach</code> which receives a string called <code>subject</code>, and prints out:</h4>
+                  <pre style="background:#0c1021;color:#f8f8f8">[teacher<span style="color:#61ce3c">'s name] is now teaching [subject]
+</span></pre>
+<h4>Code:</h4>
+<pre style="background:#0c1021;color:#f8f8f8"><span style="color:#fbde2d">var</span> <span style="color:#ff6400">Person</span> <span style="color:#fbde2d">=</span> <span style="color:#fbde2d">function</span>() {};
+
+<span style="color:#8da6ce">Person</span>.<span style="color:#8da6ce">prototype</span>.<span style="color:#ff6400">initialize</span> <span style="color:#fbde2d">=</span> <span style="color:#fbde2d">function</span>(name, age)
+{
+    this.<span style="color:#8da6ce">name</span> <span style="color:#fbde2d">=</span> name;
+    this.age <span style="color:#fbde2d">=</span> age;
+}
+
+<span style="color:#aeaeae">// TODO: create the class Teacher and a method teach</span>
+
+<span style="color:#fbde2d">var</span> him <span style="color:#fbde2d">=</span> <span style="color:#fbde2d">new</span> <span style="color:#ff6400">Teacher</span>();
+
+him.initialize(<span style="color:#61ce3c">"Adam"</span>, <span style="color:#d8fa3c">45</span>);
+him.teach(<span style="color:#61ce3c">"Inheritance"</span>);
+</pre>
+                  </div>
+               </div>
+            </div>
+         </section>
+      </div>
+      <!-- Scripts -->
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/jquery.scrolly.min.js"></script>
+      <script src="assets/js/jquery.scrollex.min.js"></script>
+      <script src="assets/js/skel.min.js"></script>
+      <script src="assets/js/util.js"></script>
+      <script src="assets/js/main.js"></script>
+   </body>
+</html>

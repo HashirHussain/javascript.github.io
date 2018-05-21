@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <title>Object Oriented JavaScript</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="stylesheet" href="assets/css/main.css" />
+   </head>
+   <body class="subpage">
+      <!-- Header -->
+      <header id="header">
+         <a href="#menu">Menu</a>
+      </header>
+      <!-- Nav -->
+      <nav id="menu">
+         <ul class="links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="oops.html">Object Oriented JavaScript</a></li>
+            <li><a href="functional-context.html">Functional Context</a></li>
+            <li><a href="inheritance.html">Inheritance</a></li>
+         </ul>
+      </nav>
+      <!-- Main -->
+      <div id="main">
+         <!-- Section -->
+         <section class="wrapper">
+            <div class="inner">
+               <header class="align-center">
+                  <h1>Object Oriented JavaScript</h1>
+               </header>
+               <div class="flex flex-2">
+                  <div class="col col2">
+                     <h4>JavaScript uses functions as classes to create objects using the <code>new</code> keyword.</h4>
+                     <h5>Here is an example:</h5>
+                     <pre style="background:#0c1021;color:#f8f8f8"><span style="color:#fbde2d">function</span> <span style="color:#ff6400">Person</span>(firstName, lastName) {
+  <span style="color:#aeaeae">// construct the object using the arguments</span>
+  this.firstName <span style="color:#fbde2d">=</span> firstName;
+  this.lastName <span style="color:#fbde2d">=</span> lastName;
+  <span style="color:#aeaeae">// a method which returns the full name</span>
+  <span style="color:#8da6ce">this</span>.<span style="color:#ff6400">fullName</span> <span style="color:#fbde2d">=</span> <span style="color:#fbde2d">function</span>() {
+    <span style="color:#fbde2d">return</span> this.firstName <span style="color:#fbde2d">+</span> <span style="color:#61ce3c">" "</span> <span style="color:#fbde2d">+</span> this.lastName;
+  }
+}
+<span style="color:#fbde2d">var</span> myPerson <span style="color:#fbde2d">=</span> <span style="color:#fbde2d">new</span> <span style="color:#ff6400">Person</span>(<span style="color:#61ce3c">"John"</span>, <span style="color:#61ce3c">"Smith"</span>);
+<span style="color:#ff6400">console</span><span style="color:#8da6ce">.log</span>(myPerson.fullName()); <span style="color:#aeaeae">// outputs "John Smith"</span>
+</pre>
+                  </div>
+               </div>
+               <div class="flex flex-2">
+                  <div class="col col2">
+                     <h4>Creating an object using the <code>new</code> keyword is the same as writing the following code:</h4>
+                     <pre style="background:#0c1021;color:#f8f8f8"><span style="color:#fbde2d">var</span> myPerson <span style="color:#fbde2d">=</span> {
+    firstName : <span style="color:#61ce3c">"John"</span>,
+    lastName : <span style="color:#61ce3c">"Smith"</span>,
+    <span style="color:#ff6400">fullName</span> : <span style="color:#fbde2d">function</span>()
+    {
+        <span style="color:#fbde2d">return</span> this.firstName <span style="color:#fbde2d">+</span> <span style="color:#61ce3c">" "</span> <span style="color:#fbde2d">+</span> this.lastName;
+    }
+}
+</pre>
+                  </div>
+               </div>
+               <div class="flex flex-2">
+                  <div class="col col2">
+                     <h4>The difference between the two methods of creating objects is that the first method uses a class to define the object and then the new keyword to instantiate it, and the second method immediately creates an instance of the object.</h4>
+                  </div>
+               </div>
+               <div class="flex flex-2">
+                  <div class="col col2">
+                     <h2>Exercise</h2>
+                     <h4>Create a class called Person which accepts the name of a person as a string, and his/her age as a number.</h4>
+                     <h4>The Person class should have a method called <code>describe</code> which returns a string with the following syntax: "<code>name</code>, <code>age</code> years old". So for example, if John is 19 years old then the function <code>describe</code> of his object will return "John, 19 years old".</h4>
+                     <pre style="background:#0c1021;color:#f8f8f8"><span style="color:#aeaeae">// TODO: create the Person class using a function</span>
+
+<span style="color:#fbde2d">var</span> jack <span style="color:#fbde2d">=</span> <span style="color:#fbde2d">new</span> <span style="color:#ff6400">Person</span>(<span style="color:#61ce3c">"Jack"</span>, <span style="color:#d8fa3c">25</span>);
+<span style="color:#fbde2d">var</span> jill <span style="color:#fbde2d">=</span> <span style="color:#fbde2d">new</span> <span style="color:#ff6400">Person</span>(<span style="color:#61ce3c">"Jill"</span>, <span style="color:#d8fa3c">24</span>);
+<span style="color:#ff6400">console</span><span style="color:#8da6ce">.log</span>(jack.describe());
+<span style="color:#ff6400">console</span><span style="color:#8da6ce">.log</span>(jill.describe());
+</pre>
+                  </div>
+               </div>
+            </div>
+         </section>
+      </div>
+      <!-- Scripts -->
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/jquery.scrolly.min.js"></script>
+      <script src="assets/js/jquery.scrollex.min.js"></script>
+      <script src="assets/js/skel.min.js"></script>
+      <script src="assets/js/util.js"></script>
+      <script src="assets/js/main.js"></script>
+   </body>
+</html>

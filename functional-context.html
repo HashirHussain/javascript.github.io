@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <title>Functional Context</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="stylesheet" href="assets/css/main.css" />
+   </head>
+   <body class="subpage">
+      <!-- Header -->
+      <header id="header">
+         <a href="#menu">Menu</a>
+      </header>
+      <!-- Nav -->
+    <nav id="menu">
+         <ul class="links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="oops.html">Object Oriented JavaScript</a></li>
+            <li><a href="functional-context.html">Functional Context</a></li>
+            <li><a href="inheritance.html">Inheritance</a></li>
+         </ul>
+      </nav>
+      <!-- Main -->
+      <div id="main">
+         <!-- Section -->
+         <section class="wrapper">
+            <div class="inner">
+               <header class="align-center">
+                  <h1>Function Context</h1>
+               </header>
+               <div class="flex flex-2">
+                  <div class="col col2">
+                     <h4>Functions in JavaScript run in a specific context, and using the <code>this</code> variable we have access to it.</h4>
+                     <h4>All standard functions in the browser run under the Window context. Functions defined under an object or a class (another function) will use the context of the object it was created in. However, we can also change the context of a function at runtime, either before or while executing the function.</h4>
+                    <h3>Binding a method to an object</h3>
+                    <h4>To bind a function to an object and make it an object method, we can use the <code>bind</code> function. Here is a simple example:</h4>
+                    <pre style="background:#0c1021;color:#f8f8f8"><span style="color:#fbde2d">var</span> person <span style="color:#fbde2d">=</span> {
+    name : <span style="color:#61ce3c">"John"</span>
+};
+
+<span style="color:#fbde2d">function</span> <span style="color:#ff6400">printName</span>()
+{
+    <span style="color:#ff6400">console</span><span style="color:#8da6ce">.log</span>(this.<span style="color:#8da6ce">name</span>);
+}
+</pre>
+                  </div>
+               </div>
+               <div class="flex flex-2">
+                  <div class="col col2">
+                     <h4>Obviously, we are not able to call <code>printName()</code> without associating the function with the object <code>person</code>. To do this we must create a bound method of the function printName to person, using the following code:
+                     </h4>
+<pre style="background:#0c1021;color:#f8f8f8"><span style="color:#fbde2d">var</span> boundPrintName <span style="color:#fbde2d">=</span> printName.bind(person);
+boundPrintName();    <span style="color:#aeaeae">// prints out "John"</span>
+</pre>
+                  </div>
+               </div>
+               <div class="flex flex-2">
+                  <div class="col col2">
+                     <h3>Calling a function with a different context</h3>
+                     <h4>We can use the <code>call</code> and <code>apply</code> functions to call a function as if it was bound to an object. The difference between the <code>call</code> and <code>apply</code>  functions is only by how they receive their arguments - the <code>call</code> function receives the this argument first, and afterwards the arguments of the function, whereas the <code>apply</code> function receives the this argument first, and an array of arguments to pass on to the function as a second argument to the function.</h4>
+                     <h4>For example, let's call <code>printName</code> with <code>person</code> as the context using the <code>call</code> method:</h4>
+<pre style="background:#0c1021;color:#f8f8f8">printName.<span style="color:#8da6ce">call</span>(person);      <span style="color:#aeaeae">// prints out "John"</span>
+</pre>
+                  </div>
+               </div>
+                              <div class="flex flex-2">
+                  <div class="col col2">
+                     <h2>Exercise</h2>
+                     <h4>Create bound copies of <code>printFullName</code> and printDetails to person called <code>boundPrintFullName</code> and <code>boundPrintDetails</code>.</h4>
+                    <pre style="background:#0c1021;color:#f8f8f8"><span style="color:#fbde2d">var</span> person <span style="color:#fbde2d">=</span> {
+    firstName : <span style="color:#61ce3c">"John"</span>,
+    lastName : <span style="color:#61ce3c">"Smith"</span>,
+    age : <span style="color:#d8fa3c">23</span>
+};
+
+<span style="color:#fbde2d">function</span> <span style="color:#ff6400">printFullName</span>()
+{
+    <span style="color:#ff6400">console</span><span style="color:#8da6ce">.log</span>(this.firstName <span style="color:#fbde2d">+</span> <span style="color:#61ce3c">" "</span> <span style="color:#fbde2d">+</span> this.lastName);
+}
+
+<span style="color:#fbde2d">function</span> <span style="color:#ff6400">printDetails</span>()
+{
+    <span style="color:#ff6400">console</span><span style="color:#8da6ce">.log</span>(this.firstName <span style="color:#fbde2d">+</span> <span style="color:#61ce3c">" is "</span> <span style="color:#fbde2d">+</span> this.age <span style="color:#fbde2d">+</span> <span style="color:#61ce3c">" years old"</span>);
+}
+
+<span style="color:#aeaeae">// TODO: create bound copies of printFullName and printDetails.</span>
+<span style="color:#fbde2d">var</span> boundPrintFullName;
+<span style="color:#fbde2d">var</span> boundPrintDetails;
+
+boundPrintFullName();
+boundPrintDetails();
+</pre>
+                  </div>
+               </div>
+            </div>
+         </section>
+      </div>
+      <!-- Scripts -->
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/jquery.scrolly.min.js"></script>
+      <script src="assets/js/jquery.scrollex.min.js"></script>
+      <script src="assets/js/skel.min.js"></script>
+      <script src="assets/js/util.js"></script>
+      <script src="assets/js/main.js"></script>
+   </body>
+</html>
